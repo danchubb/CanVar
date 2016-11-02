@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container" style="font-size: 16px;">
+        <h1>Frequently Asked Questions</h1>
+        <h2>General</h2>
+        <ul class="media-list">
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">{{name}} Looks a lot like ExAC...</h4>
+                    {{name}} was created based upon the <a href="http://exac.broadinstitute.org/">ExAC</a> framework provided on <a href="https://github.com/konradjk/exac_browser/blob/master/README.md">github</a> and as such it shares much of the design. We give full credit to the Macarthur team for providing this invaluable resource. However, while ExAC is incredibly useful for looking up population variant frequencies, it does not provide phenotype specific frequencies. {{name}} has been created to specifically provide study level frequency data for germline exome studies in cancer. 
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">What cancer studies are included in {{name}} ? </h4>
+                    Currently {{name}} contains variant level data for 1006 NSCCG familial early onset colorectal cancer patients sequenced at the Institute of cancer research. It is anticipated that further germline cancer studies will be added in the near future.
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">How should I cite discoveries made using {{name}} data?</h4>
+                    We anticipate the publication of a {{name}} paper describing this data set in mid 2016. If the NSCCG CRC data is used, please cite : <a href="http://www.nature.com/ncomms/2016/160622/ncomms11883/full/ncomms11883.html">Chubb et-al</a>.
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">Can I get access to individual-level genotype data from {{name}}</h4>
+                   Indivudual level data on the 1,006 NSCCG CRC cases have been deposited at the European Genome-phenome Archive, which is hosted by the European Bioinformatics Institute, accession number: EGAS00001001666
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">What are the restrictions on data usage?</h4>
+                    All data here are released under a <a href="http://www.wellcome.ac.uk/stellent/groups/corporatesite/@policy_communications/documents/web_document/wtd003207.pdf">Fort Lauderdale Agreement</a> for the benefit of the wider biomedical community. You can freely download and search the data, and use it for publications focused on specific sets of variants (for instance, assessing the frequency of a set of candidate causal variants observed in a collection of rare disease patients). 
+                </div>
+            </li>
+        </ul>
+        <h2>Technical details</h2>
+        <ul class="media-list">
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">What genome build is the {{name}} data based on?</h4>
+                    All data are based on <a href="ftp://ftp.broadinstitute.org/pub/seq/references/Homo_sapiens_assembly19.fasta">GRCh37/hg19</a>
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">What version of dbSNP was used to annotate variants?</h4>
+                    dbSNP 135. The browser supports RSIDs up to dbSNP 141, but these are not included in the VCF.
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">What version of Gencode was used to annotate variants?</h4>
+                    Version 19 (annotated with VEP version 77).
+                </div>
+            </li>
+            <li class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">Why does the browser seem to disagree with the {{name}} VCF at this multiallelic site?</h4>
+                    Due to the limitations of the VCF format, multi-allelic variants are put together on one VCF line.
+                    This inevitably adds complexity to otherwise simple variants,
+                    and thus when parsing onto the browser, we apply a <a href="http://www.cureffi.org/2014/04/24/converting-genetic-variants-to-their-minimal-representation/">minimal representation</a> script.
+                    For instance, a variant whose REF is GC and ALT alleles are TC,G - the first ALT allele is actually a SNP and will be represented in the browser as G->T.
+                </div>
+            </li>
+			
+        </ul>
+    </div>
+{% endblock %}

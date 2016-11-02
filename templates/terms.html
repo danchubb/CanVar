@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container">
+        <h1>Terms and Data Information</h1>
+        <div class="row" style="font-size: 16px;">
+            <h4>Terms of use</h4>
+            <p>
+                All data here are released under a <a href="http://www.wellcome.ac.uk/stellent/groups/corporatesite/@policy_communications/documents/web_document/wtd003207.pdf">Fort Lauderdale Agreement</a> for the benefit of the wider biomedical community. You can freely download and search the data, and we encourage the use and publications of frequency data for specific targeted sets of variants (for instance, assessing a set of candidate causal variants observed in a collection of rare disease patients). 
+            </p>
+            <h4>Citation in publications</h4>
+            <p>
+                We anticipate the publication of a {{name}} paper describing this data set in mid 2016. If the NSCCG CRC data is used, please cite : <a href="http://www.nature.com/ncomms/2016/160622/ncomms11883/full/ncomms11883.html">Chubb et-al</a>.
+            </p>
+            <h4>Data Generation</h4>
+            <p>
+                The current data release (0.1) was  generated using 1006 UK NSCCG CRC cases.
+            </p>
+            <p>
+                Exome sequencing data was aligned using the BWA aligner and stampy. The Genome Analysis Toolkit (GATK v3.1) best practices were then applied to generate gVCFs for all BAMs across a defined exome interval set and known sites were annotated with dbSNP135. The gVCFs were combined and then joint genotyping of SNPs and Indels were performed.
+            </p>
+            <p>
+                GATK Variant Quality Score Recalibration (VQSR) was used to filter variants. as per <a href="https://www.broadinstitute.org/gatk/guide/best-practices">GATK Best practices.</a> Each variant used to calculate the summary data presented in {{name}} was required to have a GQ>20 and an AD>2. Only male Y chromosome calls were accepted. Heterozygous Y chromosome calls were rejected as were male X chromosome heterozygous calls. 
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
