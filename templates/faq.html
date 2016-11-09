@@ -7,19 +7,19 @@
             <li class="media">
                 <div class="media-body">
                     <h4 class="media-heading">{{name}} Looks a lot like ExAC...</h4>
-                    {{name}} was created based upon the <a href="http://exac.broadinstitute.org/">ExAC</a> framework provided on <a href="https://github.com/konradjk/exac_browser/blob/master/README.md">github</a> and as such it shares much of the design. We give full credit to the Macarthur team for providing this invaluable resource. However, while ExAC is incredibly useful for looking up population variant frequencies, it does not provide phenotype specific frequencies. {{name}} has been created to specifically provide study level frequency data for germline exome studies in cancer. 
+                    {{name}} was created based upon the <a href="http://exac.broadinstitute.org/">ExAC</a> framework provided on <a href="https://github.com/konradjk/exac_browser/blob/master/README.md">github</a> and as such it shares much of the design. We give full credit to the MacArthur team for providing this invaluable resource. However, while ExAC is incredibly useful for looking up population variant frequencies, it does not provide phenotype specific frequencies. {{name}} has been created to specifically provide study level frequency data for germline exome studies in cancer. 
                 </div>
             </li>
             <li class="media">
                 <div class="media-body">
                     <h4 class="media-heading">What cancer studies are included in {{name}} ? </h4>
-                    Currently {{name}} contains variant level data for 1006 NSCCG familial early onset colorectal cancer patients sequenced at the Institute of cancer research. It is anticipated that further germline cancer studies will be added in the near future.
+                    Currently {{name}} contains variant level data for 1,006 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2360468/?report=classic">NSCCG</a>  familial early onset colorectal cancer patients sequenced at the Institute of cancer research. It is anticipated that further germline cancer studies will be added in the near future.
                 </div>
             </li>
             <li class="media">
                 <div class="media-body">
                     <h4 class="media-heading">How should I cite discoveries made using {{name}} data?</h4>
-                    We anticipate the publication of a {{name}} paper describing this data set in mid 2016. If the NSCCG CRC data is used, please cite : <a href="http://www.nature.com/ncomms/2016/160622/ncomms11883/full/ncomms11883.html">Chubb et-al</a>.
+                    We anticipate the publication of a {{name}} paper describing this data set in mid 2016. If the NSCCG CRC data is used, please cite : <a href="http://www.nature.com/ncomms/2016/160622/ncomms11883/full/ncomms11883.html">Chubb et-al</a>. The specific NSCCG calls made in CanVar were jointly alongside a larger set of exomes sequenced at the ICR. Calls may therefore be different from those presented in the original publication.  
                 </div>
             </li>
             <li class="media">
@@ -53,15 +53,6 @@
                 <div class="media-body">
                     <h4 class="media-heading">What version of Gencode was used to annotate variants?</h4>
                     Version 19 (annotated with VEP version 77).
-                </div>
-            </li>
-            <li class="media">
-                <div class="media-body">
-                    <h4 class="media-heading">Why does the browser seem to disagree with the {{name}} VCF at this multiallelic site?</h4>
-                    Due to the limitations of the VCF format, multi-allelic variants are put together on one VCF line.
-                    This inevitably adds complexity to otherwise simple variants,
-                    and thus when parsing onto the browser, we apply a <a href="http://www.cureffi.org/2014/04/24/converting-genetic-variants-to-their-minimal-representation/">minimal representation</a> script.
-                    For instance, a variant whose REF is GC and ALT alleles are TC,G - the first ALT allele is actually a SNP and will be represented in the browser as G->T.
                 </div>
             </li>
 			
