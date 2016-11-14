@@ -25,7 +25,7 @@ To generate coverage file
 
 java -jar GenomeAnalysisTK.jar -T DepthOfCoverage -R human_g1k_v37.fasta -I bams.list  -L capture.bed --omitIntervalStatistics --omitLocusTable --omitPerSampleStats -nt n -o list.coverage
 
-#bams.list contains the paths to all the BAM files you want to calc coverage for. 
+bams.list contains the paths to all the BAM files you want to calc coverage for. 
 
 perl prepare_coverage_for_tabix.pl list.coverage | bgzip -c > list.coverage.gz
 
@@ -33,12 +33,12 @@ tabix -s 1 -b 2 -e 2 list.coverage.gz
 
 python average_coverage_calculate.py coverage_file_list capture.bed
 
-#in this example coverage_file_list would contain the path to list.coverage.gz. If you split your GATK DepthOfCoverage command in to different sample sets then each tabixed coverage file goes on a different line. A .cov file is produced with the average coverage for each position across all samples.
+in this example coverage_file_list would contain the path to list.coverage.gz. If you split your GATK DepthOfCoverage command in to different sample sets then each tabixed coverage file goes on a different line. A .cov file is produced with the average coverage for each position across all samples.
 
 bgzip -c coverage_file_list.cov > all_coverage.txt.gz
 tabix -s 1 -b 2 -e 2 all_coverage.txt.gz
 
-#all_coverage.txt.gz is then used in the exac.py script as the coverage file. It can also be split by chromosome and added as per the original exac.py code.
+all_coverage.txt.gz is then used in the exac.py script as the coverage file. It can also be split by chromosome and added as per the original exac.py code.
 
 
 
