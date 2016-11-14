@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+#adapted from https://github.com/konradjk/exac_browser/blob/master/exac.py
 
 import itertools
 import json
@@ -41,7 +42,7 @@ Compress(app)
 app.config['COMPRESS_DEBUG'] = True
 cache = SimpleCache(default_timeout=60*60*24)
 
-EXAC_FILES_DIRECTORY = '/home/cancgene/dchubb/exac/exac_browser/exac_data/'
+EXAC_FILES_DIRECTORY = '/home/new_exac/exac/exac_browser/exac_data/'
 REGION_LIMIT = 1E5
 EXON_PADDING = 50
 # Load default config and override config from an environment variable
@@ -53,7 +54,6 @@ app.config.update(dict(
     DEBUG=False,
     SECRET_KEY='development key',
     LOAD_DB_PARALLEL_PROCESSES = 2,  # contigs assigned to threads, so good to make this a factor of 24 (eg. 2,3,4,6,8)
-    #SITES_VCFS=glob.glob(os.path.join(os.path.dirname(__file__), EXAC_FILES_DIRECTORY, 'ExAC*.vcf.gz')),
     SITES_VCFS=glob.glob(os.path.join(os.path.dirname(__file__), EXAC_FILES_DIRECTORY, 'NSCCG_site.vcf.gz')),
     GENCODE_GTF=os.path.join(os.path.dirname(__file__), EXAC_FILES_DIRECTORY, 'gencode.gtf.gz'),
     CANONICAL_TRANSCRIPT_FILE=os.path.join(os.path.dirname(__file__), EXAC_FILES_DIRECTORY, 'canonical_transcripts.txt.gz'),
@@ -108,21 +108,8 @@ def parse_tabix_file_subset(tabix_filenames, subset_i, subset_n, record_parser):
     open_tabix_files = [pysam.Tabixfile(tabix_filename) for tabix_filename in tabix_filenames]
     tabix_file_contig_pairs = [(tabix_file, contig) for tabix_file in open_tabix_files for contig in tabix_file.contigs]
     print(tabix_filenames, subset_i, subset_n, record_parser)
-    #tabix_file_contig_pairs_new=[]
-    #for i in tabix_file_contig_pairs:
-       # print i[1]
-        #if i[1]=="22" or i[1]=="8" or i[1]=="X" or i[1]=="Y" or i[1]=="21":
-            #print("THIS IS 7")
-            #tabix_file_contig_pairs_new.append(i)
-    #print("AAAAAAA",tabix_file_contig_pairs)
-    #print("BBBBBBB",tabix_file_contig_pairs_new)
     
-    #print(tabix_file_contig_pairs)
     tabix_file_contig_subset = tabix_file_contig_pairs[subset_i : : subset_n]  # get every n'th tabix_file/contig pair
-    #tabix_file_contig_subset_new = tabix_file_contig_pairs_new[subset_i : : subset_n]  # get every n'th tabix_file/contig pair
-    print("PAIRS",tabix_file_contig_subset)
-    #print("PAIRS_new",tabix_file_contig_subset_new)
-    #tabix_file_contig_subset=tabix_file_contig_subset_new
 
     short_filenames = ", ".join(map(os.path.basename, tabix_filenames))
     
@@ -548,7 +535,7 @@ def inject_num_females():
     return dict(num_females=459)
 @app.context_processor
 def inject_Full_name():
-    return dict(fullname="Cancer Germline Variation Database")
+    return dict(fullname="The Cancer Variation Resource")
 	
 @app.context_processor
 def inject_name():
