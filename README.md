@@ -35,7 +35,7 @@ For linux systems
 http://docs.python-guide.org/en/latest/starting/install/linux/
 
 
-Install MongoDB:
+Install MongoDB on MAC:
 
     brew install mongodb
     # or
@@ -68,8 +68,6 @@ If so, you can create a python virtual environment where the browser will live:
     mkdir canvar_env
     virtualenv canvar_env
     source canvar_env/bin/activate
-
-### Installation
 
 Install the python requirements:
 
