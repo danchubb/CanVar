@@ -18,6 +18,7 @@ First (as this can run in parallel), get the datasets that the browser uses and 
     wget https://personal.broadinstitute.org/konradk/exac_browser/dbNSFP2.6_gene.gz
     wget https://personal.broadinstitute.org/konradk/exac_browser/gencode.gtf.gz
     wget https://personal.broadinstitute.org/konradk/exac_browser/omim_info.txt.gz
+
 For the dbsnp file:
 
     wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/snp141.txt.gz 
