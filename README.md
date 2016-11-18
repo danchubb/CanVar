@@ -11,14 +11,20 @@ Create a directory to put all this stuff in. This will serve as the parent direc
     mkdir canvar
     cd canvar
 
-First (as this can run in parallel), get the datasets that the browser uses and put them into an 'exac_data' directory:
+First (as this can run in parallel), get the datasets that the browser uses and put them into an 'exac_data' directory. All the files required can be found at:
 
-    wget http://broadinstitute.org/~konradk/exac_browser/exac_browser.tar.gz .
-    tar zxvf exac_browser.tar.gz
-    cd ..
+    wget https://personal.broadinstitute.org/konradk/exac_browser/omim_info.txt.gz
+    wget https://personal.broadinstitute.org/konradk/exac_browser/canonical_transcripts.txt.gz
+    wget https://personal.broadinstitute.org/konradk/exac_browser/dbNSFP2.6_gene.gz
+    wget https://personal.broadinstitute.org/konradk/exac_browser/gencode.gtf.gz
+    wget https://personal.broadinstitute.org/konradk/exac_browser/omim_info.txt.gz
+For the dbsnp file:
+    wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/snp141.txt.gz 
+    gzcat snp141.txt.gz | cut -f 1-5 | bgzip -c > snp141.txt.bgz \n"
+    tabix -0 -s 2 -b 3 -e 4 snp141.txt.bgzsudo 
+    zcat b142_SNPChrPosOnRef_105.bcp.gz | awk '$3 != ""' | perl -pi -e 's/ +/\t/g' | sort -k2,2 -k3,3n | bgzip -c > dbsnp142.txt.bgz
+    tabix -s 2 -b 3 -e 3 dbsnp142.txt.bgz
 
-The files used are the same as those used by exac
-    
 Now clone the repo: 
 
     git clone https://github.com/konradjk/exac_browser.git
@@ -35,7 +41,7 @@ For linux systems
 http://docs.python-guide.org/en/latest/starting/install/linux/
 
 
-Install MongoDB on MAC:
+Install MongoDB on Mac:
 
     brew install mongodb
     # or
@@ -54,16 +60,20 @@ In a separate tab, start the mongo database server:
     mongod --dbpath database
 
 This local server needs to be running at all times when you are working on the site.
-You could do this in the background if you want or set up some startup service,
-but I think it's easier just to open a tab you can monitor.
+You could do this in the background if you want or set up some startup service, or within a screeen session
+if you don't want to keep an active terminal window open. 
 
-Finally, you may want to keep the system in a virtualenv:
+Finally, you may want to keep the system in a virtualenv, to install:
+
+For Mac:
 
     sudo port install py27-virtualenv # Or whatever version
-    or sudo apt-get install virtualenv
+For linux:
+
+    sudo apt-get install virtualenv
     or sudo pip install virtualenv
 
-If so, you can create a python virtual environment where the browser will live:
+You can then create a python virtual environment where the browser will live:
 
     mkdir canvar_env
     virtualenv canvar_env
@@ -85,13 +95,13 @@ VCF -> sites vcf:
 
 phenotype.csv contains phenotype data for each sample in the vcf file, it must have the columns:
 
-sample phenotype sex
+    sample phenotype sex
 
 where sample is the sample ID as stated in the header line of the VCF, phenotype is the disease (or other) state you want to define as a population and sex is specified as M or F. 
 
 populations.csv contains all the "populations" present. These correspond to the different phenotypes. e.g. the Colorectal cancer population, it must have the columns:
 
-code phenotype
+    code phenotype
 
 where code is the abbreviated form of the phenotype that will appear in the sites.vcf e.g. CRC Colorectal
 
@@ -135,7 +145,7 @@ Then, you need to create a cache for autocomplete and large gene purposes:
 
     python manage.py create_cache
 
-All genes contained within the genes_to_cache.txt file will be pre-cached. 
+All genes contained within the genes_to_cache.txt file will be pre-cached. You can add as many Transcript IDs as you want, up to every transcript within the database in order to fully cache the data.
 
 ### Running the site
 
