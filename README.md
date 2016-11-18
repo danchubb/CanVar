@@ -135,6 +135,8 @@ Then, you need to create a cache for autocomplete and large gene purposes:
 
     python manage.py create_cache
 
+All genes contained within the genes_to_cache.txt file will be pre-cached. 
+
 ### Running the site
 
 Note that if you are revisiting the site after a break, make sure your virtualenv is `activate`'d.
