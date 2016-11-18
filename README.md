@@ -19,6 +19,7 @@ First (as this can run in parallel), get the datasets that the browser uses and 
     wget https://personal.broadinstitute.org/konradk/exac_browser/gencode.gtf.gz
     wget https://personal.broadinstitute.org/konradk/exac_browser/omim_info.txt.gz
 For the dbsnp file:
+
     wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/snp141.txt.gz 
     gzcat snp141.txt.gz | cut -f 1-5 | bgzip -c > snp141.txt.bgz \n"
     tabix -0 -s 2 -b 3 -e 4 snp141.txt.bgzsudo 
