@@ -29,7 +29,7 @@ For the dbsnp file:
 
 Now clone the repo: 
 
-    git clone https://github.com/konradjk/exac_browser.git
+    git clone https://github.com/danchubb/CanVar.git
 
 ### Dependencies
 
@@ -91,6 +91,8 @@ Some packages will require Python headers (python-dev on some systems).
 
 The code provided here is primarily used to produce the sites VCF file and coverage file required by the framework. Other scripts have been modified to remove hardcoded references to ExAC and the populations contained within it, replacing them with arbitrary groups such as disease state. 
 
+####Creating sites vcf and coverage files
+
 VCF -> sites vcf:
 
     python vcf_to_site_canvar.py --infile /path/to/file.vcf --phenotypes /path/to/phenotypes.csv --pops populations.csv
@@ -124,7 +126,27 @@ in this example coverage_file_list would contain the path to list.coverage.gz. I
 
 all_coverage.txt.gz is then used in the canvar.py script as the coverage file. It can also be split by chromosome and added as per the original exac.py code.
 
-Now the database is loaded from the flat files.
+####Adapted exac files
+
+The other remaining files and directories are almost identical to those availale from: https://github.com/konradjk/exac_browser/blob/master/README.md 
+
+/static contains the .js files, css files, images and fonts required for the website. The .js module widget-columnSelector.js is added to enable the column select tool on the gene result page.
+
+/templates contains the HTML templates for the various webpages. 
+
+canvar.py majority of the important code. Calls other python functions, imports data and needs to be run in order to start the flask web framework
+
+lookups.py pulls data from mongodb 
+
+manage.py called to load the data in to mongodb
+
+Parsing.py called when loading the input files in to the mongodb. The populations as they will be displayed in the website needs to be re-defined here.
+
+utils.py additional modules required when parsing and retrieving data 
+
+####Loading data
+
+Now the database is loaded from the flat files:
 This is a single command, but it can take a while (can take advantage of parallel loads by modifying LOAD\_DB\_PARALLEL\_PROCESSES in exac.py):
 
     python manage.py load_db
