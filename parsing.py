@@ -9,9 +9,8 @@ import copy
 POPS = {
     #'1': 'CON',
     '2': 'NSCCG',
-    #'3': 'TESTES',
-    #'4': 'GLIOMA',
-    #'5': 'MYELOMA'
+    #'3': 'GLIOMA',
+    #'4': 'MYELOMA'
 }
 #POPS = {
 #    'AFR':"African/African American ",
