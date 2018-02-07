@@ -126,14 +126,11 @@ CSQ_HEAD=desc.replace('Consequence type as predicted by VEP. Format: ','').repla
 #print("XX",CSQ,"XX")
 H=['#CHROM','POS','ID','REF','ALT','QUAL','FILTER','INFO']
 print('\t'.join(H))
-
+d=0
 #vcf_chrom=vcf.fetch(chrom)
+
 for v in vcf:
 
-
-	
-
-d=0
 #for v in vcf_chrom:
 
 #for v in vcf:
