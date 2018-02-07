@@ -22,8 +22,8 @@ First (as this can run in parallel), get the datasets that the browser uses and 
 For the dbsnp file:
 
     wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/snp141.txt.gz 
-    gzcat snp141.txt.gz | cut -f 1-5 | bgzip -c > snp141.txt.bgz \n"
-    tabix -0 -s 2 -b 3 -e 4 snp141.txt.bgzsudo 
+    gzcat snp141.txt.gz | cut -f 1-5 | bgzip -c > snp141.txt.bgz
+    tabix -0 -s 2 -b 3 -e 4 snp141.txt.bgz
     zcat b142_SNPChrPosOnRef_105.bcp.gz | awk '$3 != ""' | perl -pi -e 's/ +/\t/g' | sort -k2,2 -k3,3n | bgzip -c > dbsnp142.txt.bgz
     tabix -s 2 -b 3 -e 3 dbsnp142.txt.bgz
 
